@@ -16,16 +16,16 @@ class GameActivity : AppCompatActivity() {
 
         setContentView(R.layout.gameactivity_main)
         hangmanModelView = HangmanModelView()
-        hangmanModelView.getNewWord(binding.hangmantextoutput)
+        hangmanModelView.getNewWord(binding.hangmanTextOutput)
 
-        binding.guessbutton.setOnClickListener{
-            val char = binding.hangmantextinput.text.getOrNull(0)
+        binding.guessButton.setOnClickListener{
+            val char = binding.guessLetterInput.text.getOrNull(0)
             if(char != null){
-                hangmanModelView.guessLetter(char)
+                hangmanModelView.guessLetter(char, binding.hangmanTextOutput,binding.alphabet, this)
             }else{
                 Toast.makeText(this, "You must submit a letter", Toast.LENGTH_LONG).show()
             }
-
+            binding.guessLetterInput.setText("")
         }
     }
 }
